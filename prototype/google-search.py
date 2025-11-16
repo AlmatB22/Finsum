@@ -1,6 +1,6 @@
 import feedparser
 
-def get_google_news_links(rss_url, limit=10):
+def get_google_news_links(rss_url, limit=30):
     """
     Fetch and parse a Google News RSS feed.
     
