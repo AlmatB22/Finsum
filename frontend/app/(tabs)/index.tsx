@@ -1,7 +1,9 @@
 import { View, Text, TextInput, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stock } from '@/types/stock';
 import StockCard from '@/components/StockCard';
+
 
 const dummyStocks: Stock[] = [
   { symbol: "AAPL", name: "Apple Inc.", price: 178.45, change: 3.25, percent: 1.86 },
@@ -25,21 +27,23 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <ScrollView className='flex-1 border border-red padding-15'>
-      <TextInput style={styles.search} placeholder="Search Stocks..." />
+    <SafeAreaView className='flex-1'>
+      <ScrollView className='flex-1 p-4'>
+        <TextInput style={styles.search} placeholder="Search Stocks..." placeholderTextColor='#000000AD'/>
 
-      <Text style={styles.sectionTitle}>Recently Viewed</Text>
-      <View style={styles.row}>
-        <StockCard item={dummyStocks[0]}/>
-        <StockCard item={dummyStocks[1]}/>
-      </View>
+        <Text style={styles.sectionTitle}>Recently Viewed</Text>
+        <View className='flex-row justify-around'>
+          <StockCard item={dummyStocks[0]}/>
+          <StockCard item={dummyStocks[1]}/>
+        </View>
 
-      <Text style={styles.sectionTitle}>Watch List</Text>
-      <View style={styles.row}>
-        <StockCard item={dummyStocks[0]}/>
-        <StockCard item={dummyStocks[1]}/>
-      </View>
-    </ScrollView>
+        <Text style={styles.sectionTitle}>Watch List</Text>
+        <View className='flex-row justify-around'>
+          <StockCard item={dummyStocks[0]}/>
+          <StockCard item={dummyStocks[1]}/>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
