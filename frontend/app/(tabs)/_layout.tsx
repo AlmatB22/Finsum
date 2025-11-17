@@ -6,7 +6,6 @@ export default function TabsLayout() {
         <Tabs screenOptions={{ headerShown: false}}>
             <Tabs.Screen name='index'/>
             <Tabs.Screen name='favourites' options={{
-                
             }}/>
         </Tabs>
     )
