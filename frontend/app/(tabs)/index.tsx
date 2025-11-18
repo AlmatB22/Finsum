@@ -1,7 +1,9 @@
+import {useState} from 'react'
 import { View, Text, TextInput, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stock } from '@/types/stock';
+import SearchBar from '@/components/SearchBar';
 import StockCard from '@/components/StockCard';
 
 
@@ -25,12 +27,13 @@ const dummyStocks: Stock[] = [
 
 export default function Home() {
   const router = useRouter();
+  const [search, setSearch] = useState<string>('');
 
   return (
     <SafeAreaView className='flex-1'>
       <ScrollView className='flex-1 p-4'>
-        <TextInput style={styles.search} placeholder="Search Stocks..." placeholderTextColor='#000000AD'/>
-
+        <SearchBar value={search} onValueChange={setSearch} />
+        <View className='mt-5'></View>
         <Text style={styles.sectionTitle}>Recently Viewed</Text>
         <View className='flex-row justify-around'>
           <StockCard item={dummyStocks[0]}/>
