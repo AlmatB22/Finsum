@@ -2,25 +2,25 @@ import { View, Text, TextInput, StyleSheet, ScrollView, Pressable } from 'react-
 import { useRouter } from 'expo-router';
 import { Stock } from '@/types/stock';
 
-export default function StockCard({ item }: { item: Stock })  {
+export default function StockCard({ item }: { item: Stock }) {
     const router = useRouter();
 
     return (
-        <Pressable style={styles.card} onPress={() => router.navigate({
-        pathname: '../stock/[symbol]',
-        params: {symbol: item.symbol}
+        <Pressable className='w-[46%] bg-white p-4 rounded-2xl border-gray-100 active:bg-gray-50' onPress={() => router.navigate({
+            pathname: '../stock/[symbol]',
+            params: { symbol: item.symbol }
         })}>
-        <Text style={styles.symbol}>{item.symbol}</Text>
-        <Text style={styles.company}>{item.name}</Text>
-        <Text style={styles.price}>${item.price}</Text>
-        <Text style={[styles.change, { color: item.change > 0 ? 'green' : 'red' }]}>
-            {item.change > 0 ? '+' : ''}{item.change} ({item.percent}%)
-        </Text>
+            <Text style={styles.symbol}>{item.symbol}</Text>
+            <Text style={styles.company}>{item.name}</Text>
+            <Text style={styles.price}>${item.price}</Text>
+            <Text style={[styles.change, { color: item.change > 0 ? 'green' : 'red' }]}>
+                {item.change > 0 ? '+' : ''}{item.change} ({item.percent}%)
+            </Text>
         </Pressable>
     );
 }
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     card: {
         width: '46%',
         backgroundColor: '#fff',

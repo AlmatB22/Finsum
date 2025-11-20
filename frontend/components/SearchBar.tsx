@@ -1,7 +1,8 @@
-import { View, TextInput, Pressable, FlatList, Text, ActivityIndicator } from 'react-native';
+import { View, TextInput, Pressable, FlatList, Text, ActivityIndicator, Keyboard } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Stock } from '@/types/stock';
+import { useRouter } from 'expo-router';
 
 interface SearchParams {
     value: string;
@@ -13,6 +14,7 @@ interface SearchParams {
 }
 
 export default function SearchBar({ value, onValueChange, results = [], onFocus, onBlur, isLoading = false }: SearchParams) {
+    const router = useRouter();
 
     return (
         <View className="z-50">
@@ -46,7 +48,9 @@ export default function SearchBar({ value, onValueChange, results = [], onFocus,
                             <Pressable
                                 className="px-4 py-3 border-b border-[#F0F0F0] active:bg-gray-100"
                                 onPress={() => {
-                                    onValueChange(item.symbol);
+                                    Keyboard.dismiss();
+                                    onValueChange('');
+                                    router.navigate(`/stock/${item.symbol}`);
                                     // Optional: Navigate or do something else
                                 }}
                             >
