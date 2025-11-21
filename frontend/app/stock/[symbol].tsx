@@ -10,6 +10,11 @@ export default function StockDetails() {
   const router = useRouter();
   const { stock, loading, error } = useStockDetails(typeof symbol === 'string' ? symbol : undefined);
 
+  const handleGoBack = () => {
+    // Navigate back immediately - reverse animation will play on home screen
+    router.back();
+  };
+
   const renderFormattedText = (text: string) => {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, index) => {
@@ -32,27 +37,9 @@ export default function StockDetails() {
     return (
       <SafeAreaView className="flex-1 items-center justify-center">
         <Text className="text-red-500">{error || 'Stock not found'}</Text>
-        <Pressable onPress={() => router.back()} className="mt-4 p-2 bg-gray-100 rounded-lg">
+        <Pressable onPress={handleGoBack} className="mt-4 p-2 bg-gray-100 rounded-lg">
           <Text>Go Back</Text>
         </Pressable>
-      </SafeAreaView>
-    );
-  }
-
-
-
-  if (loading) {
-    return (
-      <SafeAreaView className="flex-1 items-center justify-center">
-        <ActivityIndicator size="large" color="black" />
-      </SafeAreaView>
-    );
-  }
-
-  if (!stock) {
-    return (
-      <SafeAreaView className="flex-1 items-center justify-center">
-        <Text>Stock not found</Text>
       </SafeAreaView>
     );
   }
@@ -62,7 +49,7 @@ export default function StockDetails() {
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View className="flex-row justify-between items-center px-4 py-2">
-          <Pressable onPress={() => router.back()} className="p-2">
+          <Pressable onPress={handleGoBack} className="p-2">
             <Feather name="arrow-left" size={24} color="black" />
           </Pressable>
           <View className="items-center">

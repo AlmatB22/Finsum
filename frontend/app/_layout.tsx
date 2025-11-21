@@ -5,15 +5,16 @@ import { StatusBar } from "expo-status-bar";
 export default function RootLayout() {
   return (
     <>
-    <StatusBar style='dark' />
-    <Stack>
-      <Stack.Screen name='(tabs)' options={{
-        headerShown: false,
-      }}/>
-      <Stack.Screen name='stock/[symbol]' options={{
-        headerShown: false,
-      }}/>
-    </Stack>
+      <StatusBar style='dark' />
+      <Stack>
+        <Stack.Screen name='(tabs)' options={{
+          headerShown: false,
+        }} />
+        <Stack.Screen name='stock/[symbol]' options={{
+          headerShown: false,
+          animation: 'none', // Disable slide animation
+        }} />
+      </Stack>
     </>
   );
 }
